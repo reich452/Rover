@@ -72,18 +72,18 @@ In the .m file, add the following private **class** methods:
 
 ``` swift
 + (NSString *)apiKey {
-static NSString *apiKey = nil;
-static dispatch_once_t onceToken;
-dispatch_once(&onceToken, ^{
-NSURL *apiKeysURL = [[NSBundle mainBundle] URLForResource:@"APIKeys" withExtension:@"plist"];
-if (!apiKeysURL) {
-NSLog(@"Error! APIKeys file not found!");
-return;
-}
-NSDictionary *apiKeys = [[NSDictionary alloc] initWithContentsOfURL:apiKeysURL];
-apiKey = apiKeys[@"APIKey"];
-});
-return apiKey;
+  static NSString *apiKey = nil;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    NSURL *apiKeysURL = [[NSBundle mainBundle] URLForResource:@"APIKeys" withExtension:@"plist"];
+    if (!apiKeysURL) {
+      NSLog(@"Error! APIKeys file not found!");
+      return;
+    }
+    NSDictionary *apiKeys = [[NSDictionary alloc] initWithContentsOfURL:apiKeysURL];
+    apiKey = apiKeys[@"APIKey"];
+  });
+  return apiKey;
 }
 ```
 
