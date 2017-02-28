@@ -119,3 +119,42 @@ If you haven't already, create Cocoa Touch Files for the views and view controll
 * Implement the `UITableViewDataSource` methods. (hint: Use the passed rover's solDescriptions)
 * Create a custom setter for the public rover property that checks if the rover being passed through the setter is the same as the current rover ( `_rover` ). If it isn't, then set the current rover to the one passed into the setter, and also reload the tableview. Remember that this setter is where we can do the Objective-C equivalent of a Swift `willSet` and `didSet`.
 * In the prepareForSegue, you should pass two things to the destination view controller; the rover that the SolsTableViewController got from the initial view controller's prepareForSegue, and the sol from the cell that the user just tapped on. (Again, make sure to create public properties on the destination view controller to be placeholders for these two things)
+
+At this point, you should be able to run the app and be able to select a rover from the inital table view controller, and see a list of its sols that have photos on the table view controller that you segue to. Make sure this works before continuing.
+
+## Part Three: Collection View Controller, Cache, and Swift PhotoDetailViewController
+
+### PhotosCollectionViewController:
+
+You will set up the collection view controller to display thumbnail images of each photo taken on the sol passed into it. 
+
+* Create two private properties:
+  * An instance of your MarsRoverClient
+  * An array of photo references.
+
+* Create a method called `fetchPhotoReferences` that doesn't return anything, but uses the appropriate MarsRoverClient method to fetch the photo references from the API, and sets the photo references property you just made to the photo references returned from the API. Call this method in the `viewDidLoad`
+
+If you haven't already, go to your custom collection view cell file, create the necessary outlet. In the implementation of the cell file, call the `prepareForReuse` function. This will be explained later on, we will come back to it.
+
+The private photo references property will be your data source for the collection view. Implement the required `UICollectionViewDataSource` methods. For now, just set the cell's imageView's image to the placeholder image in the assets folder.
+
+Implement the prepareForSegue method to pass the photo reference from the cell that the user taps on.
+
+### Photo Cache:
+
+Create a new Cocoa Touch file, called PhotoCache (with a prefix) as a subclass of NSObject. We will set up a cache in the device's memory for our photos so we aren't needlessly performing network calls to re-download photos that we've already downloaded from the API. We wil be using a class called `NSCache` to accomplish this. **Take the time to look at the documentation (and elsewhere if you want) to understand how `NSCache` works before moving on.**
+
+* In the header file, create the following:
+  * A singleton instance called `sharedCache`
+  * A method that returns nothing called `cacheImageData...forIdentifier` that takes in data of type `NSData` and an identifier as an `NSInteger`. This will be used to store the image data returned from the api, and store it so that later on, we can access it whenever we want without having to do another network call.
+  * A method called `imageDataForIdentifier` that takes in an identifier as an `NSInteger`, and returns `NSData`. This is the method used to access/fetch the image data in the cache instead of the API.
+  
+
+In the .m file:
+* Create a private property called 'cache' of type `NSCache`
+* Fill out the initializer:
+  * Set the private cache you just created to a new instance of `NSCache`
+  * Set the cache's name property to `@"com.DevMountain.MarsRover.PhotosCache"` or something similar to uniquely identify the cache.
+  
+* The `cacheImageData...forIdentifier` method should simply call the appropriate method on the private cache property to set the image data in the cache with the identifier as the key. (Remember that `NSCache` stores data as key-value pairs.)
+* Similarly, the `imageDataForIdentifier` method should return the data in the cache, using the identifier as the key.
