@@ -28,6 +28,10 @@ Create a new Cocoa Touch subclass of `NSObject` for each of these three model ob
 * The max sol that represents the most recent sol that photos exist for the rover
 * The max date (on Earth) that the photos exist for the rover 
 * The status of the rover. Make an enum ( `NS_ENUM` ) representing either complete or incomplete. Follow standard naming convention for `NS_ENUM`s.
+ * The number of photos taken by the rover
+ * An array of sol descriptions
+
+
 
 * **Photo**:
 * The photo's identifier
