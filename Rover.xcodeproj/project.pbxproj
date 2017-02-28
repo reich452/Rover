@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		46E1D4D71E65540700DDAF9A /* APIKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 46E1D4D61E65540700DDAF9A /* APIKeys.plist */; };
 		9DE7D67F1E4E26CF004CBBD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DE7D6731E4E26CF004CBBD8 /* Assets.xcassets */; };
 		9DE7D6801E4E26CF004CBBD8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DE7D6741E4E26CF004CBBD8 /* LaunchScreen.storyboard */; };
 		9DE7D6811E4E26CF004CBBD8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DE7D6761E4E26CF004CBBD8 /* Main.storyboard */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		46E1D4D61E65540700DDAF9A /* APIKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = APIKeys.plist; path = ../Sources/APIKeys.plist; sourceTree = "<group>"; };
 		9DE7D6581E4E26AC004CBBD8 /* Rover.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rover.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DE7D6731E4E26CF004CBBD8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9DE7D6751E4E26CF004CBBD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 		9DE7D6721E4E26CF004CBBD8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				46E1D4D61E65540700DDAF9A /* APIKeys.plist */,
 				9DE7D6861E4E26D8004CBBD8 /* Storyboards */,
 				9DE7D6731E4E26CF004CBBD8 /* Assets.xcassets */,
 				9DE7D6781E4E26CF004CBBD8 /* Info.plist */,
@@ -183,6 +186,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9DE7D6811E4E26CF004CBBD8 /* Main.storyboard in Resources */,
+				46E1D4D71E65540700DDAF9A /* APIKeys.plist in Resources */,
 				9DE7D67F1E4E26CF004CBBD8 /* Assets.xcassets in Resources */,
 				9DE7D6801E4E26CF004CBBD8 /* LaunchScreen.storyboard in Resources */,
 			);
@@ -355,6 +359,7 @@
 				9DE7D6711E4E26AC004CBBD8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
