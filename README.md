@@ -12,7 +12,6 @@ Students will build an app to access the photos of NASA's Mars Rovers. This app 
 Please note and be aware that parts of these instructions are intentionally vague as this is Unit 5, and you have accrued a lot of experience thus far. A decent portion of this app is fairly simple, and you have done these things many times (Table Views, model objects, etc.), simply not in Objective-C. Remember the 20 minute rule, and try Googling, looking at Stack Overflow, and use the documentation before you ask a mentor. This is for your own benefit to help you aquire the skills to find solutions independently.
 
 ## Part One - Model Objects and Mars Rover Client
-___
 
 #### Models Objects:
 You will need three model objects in this project. First, a model representing a Mars rover, second, a photo that a rover took, and third, a description of each [sol](https://en.wikipedia.org/wiki/Timekeeping_on_Mars#Sols).
