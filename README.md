@@ -162,3 +162,33 @@ In the .m file:
   
 * The `cacheImageData...forIdentifier` method should simply call the appropriate method on the private cache property to set the image data in the cache with the identifier as the key. (Remember that `NSCache` stores data as key-value pairs.)
 * Similarly, the `imageDataForIdentifier` method should return the data in the cache, using the identifier as the key.
+
+### Back to the PhotosCollectionViewController:
+
+Now that we have set up the cache to store our images, let's go back to the `PhotosCollectionViewController` in the `cellForItemAtIndexPath` and refactor it so that it will fetch photos, and make use of the photo cache to efficiently store and fetch them from there.
+
+In the `cellForItemAtIndexPath` of the PhotosCollectionViewController:
+
+1. Grab an instance of your `MarsPhoto` model object from your array of photo references.
+2. Use the photo you just got and run it through your caches `imageDataForIdentifier` method. Create a property called 'cachedData' to hold the `NSData` it returns.
+3. Check if the the cachedData is nil or not. If it isn't nil (there is NSData), initialize a new `UIImage` with the cachedData and set the cell's imageView's image to the new image. If it is nil, set the cell's imageView to the placeholder image in the Assets folder.
+4. We don't want to keep the placeholder image on the cell forever, so use the MarsRoverClient class we made to fetch the appropriate image, then set the cell's imageView's image to the returned image.
+
+We need to go back to the PhotoCollectionViewCell and use the `prepareForReuse` function. Its purpose is to do any setup needed before the cell gets reused in the collection view. What you will do is set the cell's image view's image back to the placeholder image.
+
+### Final `prepareForSegue`:
+
+We need to implement the `prepareForSegue` method on the `PhotosCollectionViewController` to pass the instance of our photo model object that from the collection view cell the user taps on.
+
+* Like before, create a public property in the destination view controller (`PhotoDetailViewController`) to place the photo. The destination view controller file should be a **Swift** file.
+* Implement the `prepareForSegue` and pass the photo object to the destination view controller
+
+### PhotoDetailViewController
+
+The last thing we need to do is put the correct information in the labels, and the right image into the image view.
+
+* Create a private function that follows the `updateViews` pattern you should be familiar with by now. This function should be called as soon as the photo property on this view controller is set.
+* The photo model object doesn't contain the UIImage to be displayed. You will have to get it from the cache, or if it doesn't exist in the cache, you will have to use the `MarsRoverClient` to fetch the image. Handle both cases accordingly.
+* Also in the `updateViews` function, make the date that will be put into the dateLabel look good. (hint: Use a `DateFormatter`)
+
+Run the project and make sure everything works.
