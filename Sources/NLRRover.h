@@ -7,7 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface NLRRover : NSObject
 
-@end
+-(instancetype)initWithName:(NSString *)name launchDate:(NSDate *)launchDate landingDate:(NSDate *)landingDate recentPhotoMax:(NSInteger *)recentPhotoMax maxDateEarthPhoto:(UIImage *)maxDateEarthPhoto numberOfPhotos:(NSString *)numberOfPhotos solDescriptions:(NSArray *)solDescriptions;
+
+// typedef NS_ENUM
+typedef NS_ENUM(NSInteger, Active) {
+    IsActive,
+    NotActive
+};
+
+@property (nonatomic, copy) NSString* name;
+@property (nonatomic, copy) NSDate* launchDate;
+@property (nonatomic, copy) NSDate* landingDate;
+@property (nonatomic, copy) NSString* recentPhotoMax;
+@property (nonatomic, copy) NSString* numberOfPhotots;
+@property (nonatomic, copy) NSArray* solDescriptions;

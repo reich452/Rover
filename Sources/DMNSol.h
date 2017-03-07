@@ -10,4 +10,10 @@
 
 @interface DMNSol : NSObject
 
+- (instancetype)initWithSolID:(NSString *)solID photoAmount:(NSString *)photoAmount cameraArray:(NSArray *)cammeraArray;
+
+@property (nonatomic, copy) NSString* solID;
+@property (nonatomic, copy) NSString* photoAmount;
+@property (nonatomic, copy) NSArray* cameraArray; 
+
 @end
