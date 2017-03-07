@@ -13,6 +13,8 @@
 
 -(instancetype)initWithName:(NSString *)name launchDate:(NSDate *)launchDate landingDate:(NSDate *)landingDate recentPhotoMax:(NSInteger *)recentPhotoMax maxDateEarthPhoto:(UIImage *)maxDateEarthPhoto numberOfPhotos:(NSString *)numberOfPhotos solDescriptions:(NSArray *)solDescriptions;
 
+-(instancetype)initWithDictionary:(NSDictionary *)dictionary; 
+
 // typedef NS_ENUM
 typedef NS_ENUM(NSInteger, Active) {
     IsActive,

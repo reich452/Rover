@@ -12,6 +12,8 @@
 
 - (instancetype)initWithSolID:(NSString *)solID photoAmount:(NSString *)photoAmount cameraArray:(NSArray *)cammeraArray;
 
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
+
 @property (nonatomic, copy) NSString* solID;
 @property (nonatomic, copy) NSString* photoAmount;
 @property (nonatomic, copy) NSArray* cameraArray; 

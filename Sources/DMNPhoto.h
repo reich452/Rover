@@ -13,6 +13,8 @@
 
 - (instancetype) initWithPhotoID:(NSString *)photoID solDate:(NSDate *)solDate cameraName:(NSString *)cameraName earthDate:(NSDate *)earthDate urlImage:(NSString *)urlImage;
 
+- (instancetype) initWithDictionary:(NSDictionary *)dictionary;
+
 @property (nonatomic, copy) NSString *photoID;
 @property (nonatomic, copy) NSDate *solDate;
 @property (nonatomic, copy) NSString *cameraName;
