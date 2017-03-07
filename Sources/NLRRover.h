@@ -15,10 +15,10 @@
 
 -(instancetype)initWithDictionary:(NSDictionary *)dictionary; 
 
-// typedef NS_ENUM
-typedef NS_ENUM(NSInteger, Active) {
-    IsActive,
-    NotActive
+// Standard industy practice
+typedef NS_ENUM(NSInteger, NLRRoverStatus) {
+    NLRRoverStatusActive,
+    NLRRoverStatusCompleted
 };
 
 @property (nonatomic, copy) NSString* name;
