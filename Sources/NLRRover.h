@@ -27,3 +27,4 @@ typedef NS_ENUM(NSInteger, NLRRoverStatus) {
 @property (nonatomic, copy) NSString* recentPhotoMax;
 @property (nonatomic, copy) NSString* numberOfPhotots;
 @property (nonatomic, copy) NSArray* solDescriptions;
+@property (nonatomic, copy) NSString* maxDateEarthPhoto; 
