@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DMNPhoto.h"
-#import "NLRRover.h"
 
+@class NLRRover;
+@class DMNPhoto;
 
 @interface DMNMarsRoverClient : NSObject
 
@@ -27,8 +27,10 @@
 
 // that takes in an instance of your photo model, and has a completion block that returns imageData ( NSData, not Data )
 
-+ (void) fetchImageDataForPhoto:(DMNPhoto *) completion: (void (^)(NSData *))completion;
++ (void) fetchImageDataForPhoto:(DMNPhoto *)photo completion: (void (^)(NSData *))completion;
 
 + (NSString *)fetchAPIKeyFromPlist;
 
 @end
+
+
