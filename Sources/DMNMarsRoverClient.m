@@ -67,11 +67,58 @@ static NSString * const baseURLString = @"https://api.nasa.gov/mars-photos/api/v
     return urlComponents.URL;
 }
 
-+ (void)fetchPhotosFromRover:(NLRRover *)rover sol:(NSNumber *)sol completion:(void (^)(NSArray *, NSError *))completion
++(void) fetchAllMarsRoversWithCompletion:(void (^)(NSArray *roverNames, NSError *error))completion
+
 {
-    NSURL *baseURL = [NSURL URLWithString:baseURLString];
+    NSString *baseURLString = @"https://api.nasa.gov/mars-photos/api/v1/";
     
+    NSURL *baseURL = [[NSURL alloc] initWithString:baseURLString];
+    NSURLComponents *urlComponents = [NSURLComponents componentsWithURL:baseURL resolvingAgainstBaseURL:YES];
+    
+    // The way we want it to be fromated. like the dateStyle in journal
+    NSURLQueryItem *apiKeyItem = [NSURLQueryItem queryItemWithName:@"api_key" value: [self fetchAPIKeyFromRover]];
+    [[[NSURLSession sharedSession] dataTaskWithURL:baseURL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        if (error) {
+            NSLog(@"Error: %@", error);
+            return completion(nil, error);
+        }
+        
+        if (!data) {
+            return completion(nil, [NSError errorWithDomain:@"com.DevMountain.Rover.ErrorDomain"code:-1 userInfo:nil]);
+        }
+        NSDictionary *jsonRover = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+        
+        NSArray *roverDicts = nil;
+        if (!jsonRover || ![jsonRover isKindOfClass:[NSDictionary class]] || !(roverDicts = jsonRover[@"rovers"])) {
+            NSLog(@"error parsing JSON %@", error);
+            return completion(nil, error);
+        }
+        
+        NSMutableArray *roverNames = [[NSMutableArray alloc] init];
+        for (NSDictionary *dict in roverDicts) {
+            NSString *name = dict[@"name"];
+            if (name) { [roverNames addObject:name]; }
+        }
+        completion(roverNames, nil);
+    }] resume];
+}
+
++(void) fetchImageDataForPhoto:(DMNPhoto *)photo completion:(void (^)(NSData * _Nonnull, NSError * _Nonnull))completion
+
+{
     
 }
+
++(void) fetchPhotosFromRover:(NLRRover *)rover sol:(NSNumber *)sol completion:(void (^)(NSArray * _Nonnull, NSError * _Nonnull))completion
+{
+    
+}
+
++(void) fetchMissionManifestForRoverNamed:(NSString *)roverName completion:(void (^)(NLRRover * _Nonnull, NSError * _Nonnull))completion
+{
+    
+}
+
 
 @end
