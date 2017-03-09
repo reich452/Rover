@@ -63,13 +63,15 @@ static NSString * const baseURLString = @"https://api.nasa.gov/mars-photos/api/v
     
     NSURLComponents *urlComponents = [NSURLComponents componentsWithURL:url resolvingAgainstBaseURL:YES];
     urlComponents.queryItems = @[[NSURLQueryItem queryItemWithName:@"sol" value:[@(sol) stringValue]],
-    [NSURLQueryItem queryItemWithName:@"api_key" value:[self apiKey]]];
+                                 [NSURLQueryItem queryItemWithName:@"api_key" value:[self apiKey]]];
     return urlComponents.URL;
 }
 
 + (void)fetchPhotosFromRover:(NLRRover *)rover sol:(NSNumber *)sol completion:(void (^)(NSArray *, NSError *))completion
 {
-    [NetworkController cancelPreviousPerformRequestsWithTarget:<#(nonnull id)#> selector:<#(nonnull SEL)#> object:<#(nullable id)#>]
+    NSURL *baseURL = [NSURL URLWithString:baseURLString];
+    
+    
 }
 
 @end
