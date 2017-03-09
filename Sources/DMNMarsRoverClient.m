@@ -11,6 +11,7 @@
 
 #import "DMNMarsRoverClient.h"
 #import "DMNPhoto.h"
+#import "Rover-Swift.h"
 
 static NSString * const baseURLString = @"https://api.nasa.gov/mars-photos/api/v1/";
 
@@ -53,9 +54,6 @@ static NSString * const baseURLString = @"https://api.nasa.gov/mars-photos/api/v
 }
 
 // Create a class method called urlForPhotosFromRover that takes in a string called 'roverName' and the sol that you want photos for, then like above, return a new, more specific NSURL pointing to the photos for the given rover and sol.
-//+ (NSURL *)urlForPhotosFromRover:(NSString *)roverName photos:(NSInteger)sol
-
-
 +(NSURL *)urlForPhotosFromRover:(NSString *)roverName photos:(NSInteger)sol
 {
     NSURL *url = [self baseURL];
@@ -67,6 +65,11 @@ static NSString * const baseURLString = @"https://api.nasa.gov/mars-photos/api/v
     urlComponents.queryItems = @[[NSURLQueryItem queryItemWithName:@"sol" value:[@(sol) stringValue]],
     [NSURLQueryItem queryItemWithName:@"api_key" value:[self apiKey]]];
     return urlComponents.URL;
+}
+
++ (void)fetchPhotosFromRover:(NLRRover *)rover sol:(NSNumber *)sol completion:(void (^)(NSArray *, NSError *))completion
+{
+    [NetworkController cancelPreviousPerformRequestsWithTarget:<#(nonnull id)#> selector:<#(nonnull SEL)#> object:<#(nullable id)#>]
 }
 
 @end
